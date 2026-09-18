@@ -1,4 +1,3 @@
-import Loading from "@/components/Loading/Loading";
 import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
 import Countdown from "@/components/Countdown/Countdown";
@@ -14,7 +13,6 @@ export default function Home() {
       
       <Header />
       <main className={styles.main}>
-        <Loading />
         <Hero />
         <Countdown />
         <InvitationMessage />
