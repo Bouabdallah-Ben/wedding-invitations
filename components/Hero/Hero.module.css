@@ -1,0 +1,577 @@
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.heroSection {
+    background-image: url('/images/wedding-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  width: 100%;
+  padding-top: 20px;
+  /*
+    The hero is a full-screen section.
+    svh is better than vh on mobile because it
+    accounts for the browser's mobile UI.
+  */
+  height: 65svh;
+
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+
+
+  z-index: 1;
+
+  overflow: hidden;
+
+}
+
+/* ============================================================
+   ARTWORK CONTAINER
+   ============================================================ */
+
+.heroArtwork {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 3;
+
+  pointer-events: none;
+}
+
+/* the trees*/
+.leftTree {
+  position: absolute;
+  left: 2%;
+  bottom: 2%;
+  height: 45%;
+}
+
+
+.leftFlower,
+.leftFlower2 {
+  position: absolute;
+  height: auto;
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center;
+  animation: flowerPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 4.25s forwards;
+}
+
+.leftFlower {
+  width: 50px;
+  bottom: 15px;
+  left: 20px;
+}
+
+.leftFlower2 {
+  width: 70px;
+  bottom: 50px; /* different position */
+  left: -15px;
+  animation-delay: 4.45s; /* pops slightly after the first */
+}
+
+@keyframes flowerPop {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.rightTopTree {
+  position: absolute;
+  right: 10%;
+  bottom: 60%;
+  z-index: -1;
+}
+.rightTree {
+  position: absolute;
+  right: -2%;
+  bottom: 0;
+
+}
+
+.rightFlower {
+  position: absolute;
+  width: 80px;
+  height: auto;
+
+  /* Adjust to place it on the right tree */
+  bottom: 30px;
+  right: 40px;
+
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center;
+
+  animation: flowerPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 4.25s forwards;
+}
+
+
+/* ============================================================
+   ARCH WRAPPER
+   ============================================================ */
+
+.archWrapper {
+  position: absolute;
+
+  /*
+    IMPORTANT:
+
+    The arch should NOT fill the entire screen.
+
+    This leaves room for the flowers on both sides.
+  */
+
+  width: 58%;
+  max-width: 230px;
+  min-width: 200px;
+
+  height: 100%;
+
+  left: 50%;
+  top: 7%;
+  display: flex;
+  justify-content: center;
+
+  transform: translateX(-50%);
+}
+
+
+/* ============================================================
+   ARCH SVG
+   ============================================================ */
+
+.heroArch {
+  /*
+    The SVG itself should stay inside
+    the archWrapper.
+  */
+
+  object-fit: contain;
+  top: auto !important;
+  bottom: 12% !important;
+  object-position: center top;
+  left: initial !important;
+  right: initial !important;
+  height: auto !important;
+  /*
+    This makes the ivory part of the arch
+    visually separate from the outside background.
+  */
+
+  filter:
+    drop-shadow(0 -22px 26px #e1cdba);
+}
+
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.heroContent {
+  position: absolute;
+  z-index: 10;
+
+  bottom: 13%;
+  left: 50%;
+  gap: 6px;
+  transform: translateX(-50%);
+
+  width: min(62%, 800px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  /* Prevent anything from overflowing */
+  max-width: calc(100% - 24px);
+}
+
+
+/* ============================================================
+   TOP HEART
+   ============================================================ */
+
+.topHeart {
+  color: #bd8c4b;
+
+  font-size: clamp(10px, 1.5vw, 14px);
+  line-height: 1;
+
+  margin-bottom: clamp(7px, 1vw, 13px);
+}
+
+
+/* ============================================================
+   BISMILLAH
+   ============================================================ */
+
+.bismillah {
+  font-family: 'Allura', cursive;
+  color: #985667;
+
+  font-size: clamp(18px, 3.5vw, 32px);
+  font-weight: 400;
+  line-height: 1;
+
+  margin-bottom: clamp(4px, 0.7vw, 6px);
+
+  /* Prevent accidental overflow */
+  max-width: 100%;
+}
+
+
+/* ============================================================
+   INTRODUCTION
+   ============================================================ */
+
+.introduction {
+  margin: 0;
+
+  font-family: 'Cormorant Garamond', serif;
+  color: #292125;
+
+  font-size: clamp(10px, 1.55vw, 16px);
+  font-weight: 600;
+  line-height: 1.35;
+
+  text-align: center;
+
+  max-width: 100%;
+}
+
+
+/* ============================================================
+   NAMES
+   ============================================================ */
+
+.names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: clamp(12px, 1.8vw, 18px);
+
+  width: 100%;
+}
+
+
+.name {
+  font-family: 'Allura', cursive;
+  color: #38232b;
+
+  /*
+    Scales down aggressively on small screens,
+    but stops at 26px.
+  */
+  font-size: clamp(26px, 6vw, 54px);
+
+  font-weight: 400;
+
+  /*
+    Slightly larger line-height makes the names
+    less likely to collide on small screens.
+  */
+  line-height: 0.82;
+
+  /*
+    Don't let long names escape the container.
+  */
+  max-width: 100%;
+
+  /*
+    Keep the name on one line when possible.
+  */
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   &
+   ============================================================ */
+
+.and {
+  font-family: 'Cormorant Garamond', serif;
+  color: #bd8c4b;
+
+  font-size: clamp(22px, 3.5vw, 36px);
+
+  line-height: 1;
+
+  margin-top: clamp(4px, 0.7vw, 6px);
+  margin-bottom: clamp(4px, 0.7vw, 6px);
+}
+
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+
+.divider {
+  display: flex;
+  align-items: center;
+
+  /*
+    Responsive width.
+  */
+  width: clamp(100px, 42%, 220px);
+
+  gap: clamp(4px, 0.7vw, 7px);
+
+  margin-top: clamp(12px, 2vw, 20px);
+  margin-bottom: clamp(10px, 1.8vw, 18px);
+}
+
+
+.dividerLine {
+  flex: 1;
+
+  height: 1px;
+
+  background: #bd8c4b;
+  opacity: 0.55;
+}
+
+
+.dividerHeart {
+  color: #bd8c4b;
+
+  font-size: clamp(7px, 1vw, 9px);
+
+  line-height: 1;
+}
+
+
+/* ============================================================
+   DATE
+   ============================================================ */
+
+.date {
+  font-family: 'Cormorant Garamond', serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: #914c5c;
+
+  font-size: clamp(14px, 2.3vw, 22px);
+
+  font-weight: 700;
+
+  letter-spacing: clamp(0.08em, 0.14vw, 0.14em);
+
+  line-height: 1;
+
+  /*
+    This is important on narrow phones.
+    The text can shrink instead of overflowing.
+  */
+  max-width: 100%;
+
+  white-space: nowrap;
+
+  margin-bottom: clamp(8px, 1.3vw, 12px);
+}
+
+
+/* ============================================================
+   TIME
+   ============================================================ */
+
+.time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: clamp(4px, 0.6vw, 6px);
+
+  font-family: 'Cormorant Garamond', serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: #392e32;
+
+  font-size: clamp(10px, 1.5vw, 15px);
+
+  font-weight: 600;
+
+  letter-spacing: clamp(0.04em, 0.08vw, 0.08em);
+
+  line-height: 1;
+
+  max-width: 100%;
+}
+
+
+/* ============================================================
+   EXTREMELY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .heroContent {
+    width: 76%;
+  }
+
+  .name {
+    font-size: 23px;
+  }
+
+  .bismillah {
+    font-size: 17px;
+  }
+
+  .introduction {
+    font-size: 10px;
+  }
+
+  .date {
+    font-size: 12px;
+  }
+
+  .time {
+    font-size: 9px;
+  }
+}
+
+.timeDecoration {
+  color: #bd8c4b;
+
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .heroSection {
+    /*
+      Keep the same composition on mobile.
+    */
+    aspect-ratio: 863 / 610;
+
+    min-height: 0;
+  }
+
+
+
+
+
+
+
+  /* ----------------------------------------
+     DIVIDER
+  ---------------------------------------- */
+
+  .divider {
+    width: 45%;
+
+    gap: 5px;
+
+    margin-top: 11px;
+
+    margin-bottom: 10px;
+  }
+
+
+  .dividerHeart {
+    font-size: 6px;
+  }
+
+
+  /* ----------------------------------------
+     DATE
+  ---------------------------------------- */
+
+  .date {
+    font-size: clamp(11px, 3vw, 16px);
+
+    letter-spacing: 0.10em;
+
+    margin-bottom: 7px;
+  }
+
+
+  /* ----------------------------------------
+     TIME
+  ---------------------------------------- */
+
+  .time {
+    font-size: clamp(8px, 2.2vw, 11px);
+
+    gap: 3px;
+  }
+
+
+  .timeDecoration {
+    font-size: 7px;
+  }
+}
+
+/* ============================================================
+   STAR ORNAMENTS
+============================================================ */
+
+.ornaments {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  /*
+    Behind the arch and flowers.
+  */
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+
+.ornament {
+  position: absolute;
+
+  display: block;
+
+  /*
+    Makes sure the SVG doesn't behave
+    like an inline image.
+  */
+  object-fit: contain;
+
+  /*
+    Smooth rendering.
+  */
+  transform-origin: center center;
+}
+
+
+/* ============================================================
+   SHINY STARS
+============================================================ */
+
+.shiny {
+  filter:
+    drop-shadow(0 0 2px rgba(189, 146, 82, 0.45))
+    drop-shadow(0 0 5px rgba(189, 146, 82, 0.25));
+}
+
+

@@ -1,0 +1,235 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import styles from "./Countdown.module.css";
+import Image from 'next/image';
+
+function TimeCard({ value, label }) {
+  return (
+    <div className={styles.timeCard}>
+      <Image
+        src="/svg/time/timer.svg"
+        alt=""
+        width={40}
+        height={40}
+        className={styles.timeBg}
+      />
+      <strong className={styles.number}>
+        {String(value).padStart(2, "0")}
+      </strong>
+
+      <span className={styles.label}>
+        {label}
+      </span>
+    </div>
+  );
+}
+
+export default function Countdown() {
+  const weddingDate = new Date(
+    "2026-11-23T20:00:00"
+  ).getTime();
+
+  const [time, setTime] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      const difference = weddingDate - Date.now();
+
+      if (difference <= 0) {
+        setTime({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
+
+        return;
+      }
+
+      setTime({
+        days: Math.floor(
+          difference / (1000 * 60 * 60 * 24)
+        ),
+
+        hours: Math.floor(
+          (difference / (1000 * 60 * 60)) % 24
+        ),
+
+        minutes: Math.floor(
+          (difference / (1000 * 60)) % 60
+        ),
+
+        seconds: Math.floor(
+          (difference / 1000) % 60
+        ),
+      });
+    };
+
+    updateCountdown();
+
+    const interval = setInterval(
+      updateCountdown,
+      1000
+    );
+
+    return () => clearInterval(interval);
+  }, [weddingDate]);
+
+  return (
+    <section className={styles.countdownSection}>
+
+      
+<div className={styles.petalLayer}>
+
+  <Image
+    src="/svg/hero/petals/petal.svg"
+    alt=""
+    width={28}
+    height={20}
+    className={styles.petal}
+    style={{
+  '--x': '8%',
+  '--y': '18%',
+  '--size': '18px',
+  '--duration': '18s',
+  '--delay': '-5s',
+  '--rotation': '35deg',
+  '--drift': '55px',
+}}
+  />
+  <Image
+    src="/svg/hero/petals/petal.svg"
+    alt=""
+    width={28}
+    height={20}
+    className={styles.petal}
+    style={{
+  '--x': '10%',
+  '--y': '38%',
+  '--size': '18px',
+  '--duration': '18s',
+  '--delay': '-5s',
+  '--rotation': '35deg',
+  '--drift': '55px',
+}}
+  />
+
+  <Image
+    src="/svg/hero/petals/petal.svg"
+    alt=""
+    width={28}
+    height={20}
+    className={styles.petal}
+    style={{
+  '--x': '78%',
+  '--y': '30%',
+  '--size': '15px',
+  '--duration': '22s',
+  '--delay': '-11s',
+  '--rotation': '70deg',
+  '--drift': '-40px',
+}}
+  />
+
+  <Image
+    src="/svg/hero/petals/petal.svg"
+    alt=""
+    width={28}
+    height={20}
+    className={styles.petal}
+    style={{
+  '--x': '12%',
+  '--y': '70%',
+  '--size': '25px',
+  '--duration': '25s',
+  '--delay': '-8s',
+  '--rotation': '-20deg',
+  '--drift': '65px',
+}}
+  />
+
+  <Image
+    src="/svg/hero/petals/petal.svg"
+    alt=""
+    width={28}
+    height={20}
+    className={styles.petal}
+    style={{
+      '--x': '91%',
+      '--y': '83%',
+      '--size': '21px',
+      '--duration': '14s',
+      '--delay': '-9s',
+      '--rotation': '-45deg',
+      '--drift': '-60px',
+    }}
+  />
+
+  <Image
+    src="/svg/hero/petals/petal.svg"
+    alt=""
+    width={28}
+    height={20}
+    className={styles.petal}
+ style={{
+  '--x': '9%',
+  '--y': '55%',
+  '--size': '18px',
+  '--duration': '18s',
+  '--delay': '-5s',
+  '--rotation': '35deg',
+  '--drift': '55px',
+}}
+  />
+
+</div>
+            {/* =====================================================
+    BOTTOM WAVES
+===================================================== */}
+
+
+  <Image
+    src="/svg/hero/waves/wave.svg"
+    alt=""
+    fill
+    className={styles.wave}
+  />
+
+
+      <h2 className={styles.title}>
+        LE GRAND JOUR APPROCHE
+      </h2>
+
+      <div className={styles.countdownGrid}>
+
+        <TimeCard
+          value={time.days}
+          label="JOURS"
+        />
+
+        <TimeCard
+          value={time.hours}
+          label="HEURES"
+        />
+
+        <TimeCard
+          value={time.minutes}
+          label="MINUTES"
+        />
+
+        <TimeCard
+          value={time.seconds}
+          label="SECONDES"
+        />
+
+      </div>
+
+    </section>
+  );
+}
